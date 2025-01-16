@@ -1,0 +1,16 @@
+body{ background-color: #FBF3D5; }
+
+.custom-ul{list-style-type: none;}
+
+.custom-header-font{font-family: Brush Script MT, Cursive;}
+
+.custom-hr-style{border-top: dashed 2px;}
+
+.custom-align{display:inline-block;
+              vertical-align: middle;
+              float: none;
+            }
+
+.disable-underline{
+  text-decoration: none;
+}
