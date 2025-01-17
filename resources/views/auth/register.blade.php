@@ -22,14 +22,11 @@
             <div class="col-3">
             </div>
             <div class="col-6">
-                @if ($errors->has('email'))
+                @if ($errors->any())
                     <div class="alert alert-danger">
-                        {{ $errors->first('email') }}
-                    </div>
-                @endif
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
+                        @foreach ($errors->all() as $error)
+                            {{ $error }} <br>
+                        @endforeach
                     </div>
                 @endif
                 <div class="card shadow">
@@ -37,18 +34,26 @@
                         <img src="{{ asset('images/welcome2.png') }}" alt="welcome" style="width: 200px;">
                     </div>
                     <div class="card-body p-4">
-                        <form action="{{ url('/login') }}" method="post">
+                        <form action="{{ url('/register/store') }}" method="post">
                             @csrf
                             <div class="mb-3">
+                                <label for="name" class="form-label">User name</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required>
                                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
                             </div>
-                            <button type="submit" class="btn btn-warning rounded-pill ps-3 pe-3">Login</button>
+                            <div class="mb-3">
+                                <label for="password_confirmation " class="form-label">Confirm password</label>
+                                <input type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                            <button type="submit" class="btn btn-warning rounded-pill ps-3 pe-3">Register</button>
                         </form>
                     </div>
                 </div>

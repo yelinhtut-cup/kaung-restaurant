@@ -39,8 +39,12 @@ Route::post('/menu/cuisine/receipt/create', [ MenuController::class, 'receipt_cr
 
 Route::get('/menu/cuisines/admin/order/list', [ MenuController::class, 'see_order_list']); // to view order list
 
-Route::get('/', [ CustomAuthController::class, 'showLoginForm']); //login form
+Route::get('/', [ CustomAuthController::class, 'showLoginForm'])->name('login'); //login form
 
-Route::post('/login', [CustomAuthController::class, 'login']);
+Route::post('/login', [ CustomAuthController::class, 'login']);
 
-Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout'); // to logout
+Route::post('/logout', [ CustomAuthController::class, 'logout'])->name('logout'); // to logout
+
+Route::get('/register', [ CustomAuthController::class, 'showRegisterForm']); // to show register form
+
+Route::post('/register/store', [ CustomAuthController::class, 'register']); // to register new user
