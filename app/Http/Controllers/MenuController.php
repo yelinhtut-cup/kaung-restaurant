@@ -195,9 +195,9 @@ class MenuController extends Controller
         OrderConfirm::truncate();
         $cuisineItem = AddItem::all()->toArray();
 
-        return view('menus.cuisine', [
+        return redirect()->route('cuisine',[
             'item' => $cuisineItem
-        ]);
+        ])->with('success', 'Thank you! Your order has been placed successfully!'); 
     }
 
     public function see_order_list(){
