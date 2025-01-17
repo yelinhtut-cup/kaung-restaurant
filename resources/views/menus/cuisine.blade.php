@@ -18,7 +18,12 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row p-5 m-5 shadow  mb-5 bg-body rounded">
+        @if(session('success'))
+            <div class="alert alert-success mt-5 ms-5 me-5">
+                {{ session('success') }}
+            </div>
+        @endif
+        <div class="row p-5 m-5 shadow bg-body rounded">
             <div class="col border-end border-dark">
                 <div class="row p-1 me-3">
                     <form action="{{ url('/menu/cuisines/pickup') }}" method="post">
