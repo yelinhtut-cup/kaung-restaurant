@@ -49,6 +49,7 @@
                                 <input type="password" class="form-control" name="password">
                             </div>
                             <button type="submit" class="btn btn-warning rounded-pill ps-3 pe-3">Login</button>
+                            <a class="ps-2" href="{{ url('/register') }}">Register here!</a>
                         </form>
                     </div>
                 </div>
