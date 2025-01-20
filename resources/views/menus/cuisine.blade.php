@@ -21,6 +21,9 @@
         <div class="row p-5 m-5 shadow  mb-5 bg-body rounded">
             <div class="col border-end border-dark">
                 <div class="row p-1 me-3">
+                    @error('checked_id')
+                        <div class="text-danger bg-light p-2 m-3">{{ $message }}</div>
+                    @enderror
                     <form action="{{ url('/menu/cuisines/pickup') }}" method="post">
                         @csrf
                         <table class="table">

@@ -88,6 +88,13 @@ class MenuController extends Controller
     }
 
     public function pick_up(Request $request){
+
+        $validateData = $request->validate([
+            'checked_id' => 'required',
+        ],[
+            'checked_id.required' => 'Please choose one item you want to order for pickup.',
+        ]);
+
         $itemId = $request->input('checked_id');
         $item = AddItem::find($itemId)->toArray();
 
