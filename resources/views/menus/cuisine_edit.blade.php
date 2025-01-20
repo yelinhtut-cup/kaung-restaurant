@@ -38,18 +38,7 @@
                         <div class="mb-3">
                             <input type="hidden" name="id" value="{{ $editData['id'] }}">
                             <label class="form-label">Cuisine category</label>
-                            <select class="form-select" name="category">
-                                <option value="rice" 
-                                {{ isset($editData['category']) && $editData['category'] == "rice" ? 'selected' : '' }}>Rice</option>
-                                <option value="cuisine" 
-                                {{ isset($editData['category']) && $editData['category'] == "cuisine" ? 'selected' : '' }}>Cuisine</option>
-                                <option value="salad" 
-                                {{ isset($editData['category']) && $editData['category'] == "salad" ? 'selected' : '' }}>Salad</option>
-                                <option value="noodle" 
-                                {{ isset($editData['category']) && $editData['category'] == "noodle" ? 'selected' : '' }}>Noodle</option>
-                                <option value="juice" 
-                                {{ isset($editData['category']) && $editData['category'] == "juice" ? 'selected' : '' }}>Juice</option>
-                            </select>
+                            <input type="text" class="form-control" name="category" value="{{ $editData['category'] }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Cuisine name</label>
