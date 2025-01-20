@@ -9,13 +9,13 @@ Route::get('/home', function(){
     return view('index');
 })->name('home');
 
-Route::get('/menu/cuisines', [ MenuController::class, 'cuisine_index']); // cuisine page
+Route::get('/menu/cuisines', [ MenuController::class, 'cuisine_index'])->name('cuisine'); // cuisine page
 
 Route::get('/menu/rice', [ MenuController::class, 'rice_index']); // rice page
 
 Route::get('/menu/cuisine/dashboard', [ MenuController::class, 'test_index']); // cuisine menu dashboard
 
-Route::get('/menu/items/add/index', [ MenuController::class, 'item_index']); // index page of adding item to menu
+Route::get('/menu/items/add/index', [ MenuController::class, 'item_index'])->name('cuisine_add'); // index page of adding item to menu
 
 Route::post('/menu/items/add', [ MenuController::class, 'create']); // add item to menu
 
@@ -48,3 +48,5 @@ Route::post('/logout', [ CustomAuthController::class, 'logout'])->name('logout')
 Route::get('/register', [ CustomAuthController::class, 'showRegisterForm']); // to show register form
 
 Route::post('/register/store', [ CustomAuthController::class, 'register']); // to register new user
+
+Route::post('/menus/cuisine/category/add', [ MenuController::class, 'category_add']); // to show category adding form

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AddItem;
+use App\Models\Category;
 use App\Models\OrderConfirm;
 use App\Models\Pickup;
 use App\Models\Receipt;
@@ -36,7 +37,11 @@ class MenuController extends Controller
     }
 
     public function item_index(){
-        return view('menus.add_item');
+        $category = Category::all();
+        
+        return view('menus.add_item', [
+            'category' => $category
+        ]);
     }
 
     public function create(Request $request){
@@ -206,6 +211,26 @@ class MenuController extends Controller
         return view('menus.order_list', [
             'orderList' => $orderList
         ]);
+    }
+
+    public function category_add(Request $request){
+        try{
+                $request->validate([
+                'category_name' => 'string|required'
+            ]);
+            $category = new Category();
+            $category->category_name = $request->category_name;
+            $category->note = $request->note;
+            $category->save();
+
+            // Flash a success message
+            return redirect()->route('cuisine_add')->with('success-category', 'Menu category added successfully!');
+        }catch (QueryException $e){
+            // Check if the error is a duplicate entry
+            if ($e->getCode() == 23000) {
+                return redirect()->route('cuisine_add')->with('error-category', 'Menu category already exists. Please use a unique value!');
+            }
+        }
     }
 }
  
