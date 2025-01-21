@@ -240,5 +240,10 @@ class MenuController extends Controller
             }
         }
     }
+
+    public function category_remove($id){
+        Category::where('id', $id)->delete();
+        return redirect()->route('cuisine_add')->with('success-category-remove', 'Category removed successfully!');
+    }
 }
  

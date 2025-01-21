@@ -39,13 +39,18 @@
                         {{ session('success-category') }}
                     </div>
                 @endif
-                    <!-- Error Message for duplicate category input -->
-                    @if (session('error-category'))
+                <!-- Error Message for duplicate category input -->
+                @if (session('error-category'))
                     <div style="color: red; margin-bottom: 10px;">
                         {{ session('error-category') }}
                     </div>
                 @endif
-
+                <!-- Success Message for removing category -->
+                @if (session('success-category-remove'))
+                    <div style="color: green; margin-bottom: 10px;">
+                        {{ session('success-category-remove') }}
+                    </div>
+                @endif
                 <div class="row p-1 me-3">            
                     <form action="{{ url('/menu/items/add') }}" method="post">
                         @csrf
@@ -76,7 +81,7 @@
 
                     <!-- modal box for adding new category -->
                     <div class="col-6 mt-3">
-                        <a type="button" class="btn btn-primary rounded-pill ps-4 pe-4 pt-2 pb-2" data-bs-toggle="modal" data-bs-target="#addCategory">Add category</a>
+                        <a type="button" class="btn btn-primary rounded-pill ps-4 pe-4 pt-2 pb-2 shadow-sm" data-bs-toggle="modal" data-bs-target="#addCategory" data-bs-toggle="tooltip" title="Add new category"><i class="bi bi-plus"></i></a>
                         <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addCategory" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -101,6 +106,31 @@
                                             <button type="submit" class="btn btn-primary">Add category</button>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal for removing category -->
+                        <!-- <a href="" type="button" class="btn btn-danger rounded-pill ps-4 pe-4 pt-2 pb-2 ms-2 shadow-sm " data-bs-toggle="tooltip" title="Remove category"><i class="bi bi-dash"></i></a> -->
+                        <a type="button" class="btn btn-danger rounded-pill ps-4 pe-4 pt-2 pb-2 shadow-sm" data-bs-toggle="modal" data-bs-target="#removeCategory" data-bs-toggle="tooltip" title="Remove category"><i class="bi bi-dash"></i></a>
+                        <div class="modal fade" id="removeCategory" tabindex="-1" aria-labelledby="addCategory" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addCategory">Remove category</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <tbody>
+                                                @foreach( $category as $item )
+                                                <tr>
+                                                <td>{{ $item->category_name }}</td>
+                                                <td class="text-center"><a href="{{ url("/menu/cuisine/category/remove/" .$item->id) }}"><i class="bi bi-x-square-fill text-danger"></i></a></td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Auth\CustomAuthController;
 
-Route::get('/home', function(){
-    return view('index');
-})->name('home');
+Route::get('/home', [ MenuController::class, 'index'])->name('home'); //home page 
 
 Route::get('/menu/cuisines', [ MenuController::class, 'cuisine_index'])->name('cuisine'); // cuisine page
 
@@ -50,3 +48,5 @@ Route::get('/register', [ CustomAuthController::class, 'showRegisterForm']); // 
 Route::post('/register/store', [ CustomAuthController::class, 'register']); // to register new user
 
 Route::post('/menus/cuisine/category/add', [ MenuController::class, 'category_add']); // to show category adding form
+
+Route::get('/menu/cuisine/category/remove/{id}', [ MenuController::class, 'category_remove']); // to delete menu category
