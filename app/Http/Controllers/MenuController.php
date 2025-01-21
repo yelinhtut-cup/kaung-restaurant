@@ -9,12 +9,21 @@ use App\Models\Pickup;
 use App\Models\Receipt;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function index(){
+
+        $user = Auth::user();
+        return view('menus.index', [
+            'userName' => $user
+        ]);
     }
 
     public function cuisine_index(){
@@ -38,7 +47,7 @@ class MenuController extends Controller
 
     public function item_index(){
         $category = Category::all();
-        
+
         return view('menus.add_item', [
             'category' => $category
         ]);
@@ -65,7 +74,6 @@ class MenuController extends Controller
 
     public function edit($id){
         $editData = AddItem::find($id);
-        
         return view('menus.cuisine_edit', [
             'editData' => $editData
         ]);
