@@ -25,6 +25,7 @@
                         <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Receipt no.</th>
+                        <th scope="col">User</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Order no.</th>
@@ -38,6 +39,7 @@
                         <tr>
                             <td>{{ $list['id'] }}</td>
                             <td>{{ $list['receipt_number'] }}</td>
+                            <td>{{ $list['user'] }}</td>
                             <td>{{ $list['item_name'] }}</td>
                             <td>{{ $list['price'] }}</td>
                             <td>{{ $list['order_number'] }}</td>

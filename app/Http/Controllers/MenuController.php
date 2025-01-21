@@ -192,10 +192,14 @@ class MenuController extends Controller
         $nextNumber = $latestReceipt ? (int)substr($latestReceipt, 8) + 1 : 1;
         $newReceiptNumber = 'receipt_' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
 
+        //fetch logged-in user
+        $user = Auth::user();
+
         foreach ($receiptItem as $key => $item) {
             // Create a new Receipt record
             $receiptData = new Receipt();
             $receiptData->receipt_number = $newReceiptNumber;
+            $receiptData->user = $user->name;
             $receiptData->item_name = $item;
             $receiptData->order_number = $receiptOrder[$key];
             $receiptData->price = $receiptPrice[$key];
