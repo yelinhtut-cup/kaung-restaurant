@@ -56,7 +56,7 @@ class MenuController extends Controller
     public function create(Request $request){
         try{
             $request->validate([
-                'item_name' => 'requierd|string',
+                'item_name' => 'required|string',
                 'price' => 'required|integer'
             ]);
 
