@@ -69,11 +69,11 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Cuisine name</label>
-                            <input type="text" class="form-control" name="item_name">
+                            <input type="text" class="form-control" name="item_name" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Price</label>
-                            <input type="text" class="form-control" name="price">
+                            <input type="text" class="form-control" name="price" required>
                         </div>
                         <button type="submit" class="btn btn-warning rounded-pill shadow-sm mt-3 ps-4 pe-4 pt-2 pb-2">Add to menu</button><br>
                         <a type="button" href="{{ url('/menu/cuisine/dashboard') }}" class="btn btn-success rounded-pill shadow-sm mt-3 ps-4 pe-4 pt-2 pb-2">See the menu</a>
