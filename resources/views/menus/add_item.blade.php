@@ -51,6 +51,13 @@
                         {{ session('success-category-remove') }}
                     </div>
                 @endif
+                <!-- Error Message for category name if uppercase -->
+                @if ($errors->has('category_name'))
+                    <div style="color: red; margin-bottom: 10px;">
+                        {{ $errors->first('category_name') }}
+                    </div>
+                @endif
+
                 <div class="row p-1 me-3">            
                     <form action="{{ url('/menu/items/add') }}" method="post">
                         @csrf
@@ -73,7 +80,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Price</label>
-                            <input type="text" class="form-control" name="price" required>
+                            <input type="text" class="form-control" name="price" required >
                         </div>
                         <button type="submit" class="btn btn-warning rounded-pill shadow-sm mt-3 ps-4 pe-4 pt-2 pb-2">Add to menu</button><br>
                         <a type="button" href="{{ url('/menu/cuisine/dashboard') }}" class="btn btn-success rounded-pill shadow-sm mt-3 ps-4 pe-4 pt-2 pb-2">See the menu</a>

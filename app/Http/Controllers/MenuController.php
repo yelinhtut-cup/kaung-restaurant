@@ -10,6 +10,7 @@ use App\Models\Receipt;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\Lowercase;
 
 class MenuController extends Controller
 {
@@ -231,16 +232,21 @@ class MenuController extends Controller
 
     public function category_add(Request $request){
         try{
-                $request->validate([
-                'category_name' => 'string|required'
+             $request->validate([
+                'category_name' => ['required', 'string', 'regex:/^[a-z]+$/'],
+            ], [
+                'category_name.regex' => 'The category name must be in lowercase letters!',
             ]);
-            $category = new Category();
-            $category->category_name = $request->category_name;
-            $category->note = $request->note;
-            $category->save();
+            
 
-            // Flash a success message
-            return redirect()->route('cuisine_add')->with('success-category', 'Menu category added successfully!');
+                $category = new Category();
+                $category->category_name = $request->category_name;
+                $category->note = $request->note;
+                $category->save();
+    
+                // Flash a success message
+                return redirect()->route('cuisine_add')->with('success-category', 'Menu category added successfully!');
+
         }catch (QueryException $e){
             // Check if the error is a duplicate entry
             if ($e->getCode() == 23000) {
